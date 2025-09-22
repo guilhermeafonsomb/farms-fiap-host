@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
+import logo from "../../assets/logo.png";
+
 function Navigation() {
   const location = useLocation();
 
@@ -15,12 +17,12 @@ function Navigation() {
   ];
 
   return (
-    <nav className="bg-blue-600 shadow-lg">
+    <nav className="bg-white border-b-2 border-primary-100 ">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <span className="text-white text-xl font-semibold">
-            Farms FIAP - Host
-          </span>
+          <Link to="/">
+            <img src={logo} alt="logo farm" />
+          </Link>
 
           <div className="flex space-x-2">
             {navItems.map((item) => (
@@ -29,8 +31,8 @@ function Navigation() {
                 to={item.path}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                   isActive(item.path)
-                    ? "bg-blue-800 text-white shadow-inner"
-                    : "text-blue-200 hover:bg-blue-700 hover:text-white"
+                    ? "bg-primary-500 text-white shadow-inner"
+                    : "text-primary-500 hover:bg-primary-500 hover:text-white"
                 }`}
               >
                 {item.label}
