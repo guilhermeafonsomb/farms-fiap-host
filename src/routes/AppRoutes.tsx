@@ -13,12 +13,12 @@ export const AppRoutes = () => {
   return (
     <MainLayout>
       <Routes>
-        {/* <Route
+        <Route
           path="/"
           element={
             <MicroFrontendRoute micro="Dashboard" MicroComponent={Dashboard} />
           }
-        /> */}
+        />
 
         <Route
           path="/producao"
