@@ -18,7 +18,7 @@ export const AppRoutes = () => {
           element={
             <MicroFrontendRoute
               micro="dashboard"
-              MicroComponent={() => <div>DASHBOARD</div>}
+              MicroComponent={() => <div>TESTING</div>}
             />
           }
         />
@@ -28,7 +28,7 @@ export const AppRoutes = () => {
           element={
             <MicroFrontendRoute
               micro="producao"
-              MicroComponent={() => <div>PRODUCAO</div>}
+              MicroComponent={() => <div>CHANGES</div>}
             />
           }
         />
