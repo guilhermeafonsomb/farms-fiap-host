@@ -4,10 +4,10 @@ import { MainLayout } from "./MainLayout";
 import { MicroFrontendRoute } from "./MicroFrontendRoute";
 import { NotFoundPage } from "./NotFoundPage";
 
-const Dashboard = lazy(() => import("dashboard/FarmsFiapDashboard"));
-const Production = lazy(() => import("production/FarmsFiapProduction"));
-const Sales = lazy(() => import("sales/FarmsFiapSales"));
-const Goals = lazy(() => import("goals/FarmsFiapGoals"));
+// const Dashboard = lazy(() => import("dashboard/FarmsFiapDashboard"));
+// const Production = lazy(() => import("production/FarmsFiapProduction"));
+// const Sales = lazy(() => import("sales/FarmsFiapSales"));
+// const Goals = lazy(() => import("goals/FarmsFiapGoals"));
 
 export const AppRoutes = () => {
   return (
