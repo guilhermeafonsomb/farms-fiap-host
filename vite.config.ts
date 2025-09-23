@@ -9,7 +9,10 @@ export default defineConfig({
     federation({
       name: "farms-fiap-app",
       remotes: {
-        dashboard: "/dashboard-assets/remoteEntry.js",
+        dashboard:
+          process.env.NODE_ENV === "production"
+            ? "https://farms-fiap-dashboard.vercel.app/assets/remoteEntry.js"
+            : "/dashboard-assets/remoteEntry.js",
         production: "/production-assets/remoteEntry.js",
         sales: "/sales-assets/remoteEntry.js",
         goals: "/goals-assets/remoteEntry.js",
