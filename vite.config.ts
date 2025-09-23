@@ -11,7 +11,7 @@ export default defineConfig({
       remotes: {
         dashboard:
           process.env.NODE_ENV === "production"
-            ? "https://farms-fiap-dashboard.vercel.app/assets/remoteEntry.js"
+            ? `https://${process.env.VITE_DASHBOARD_URL}/assets/remoteEntry.js`
             : "/dashboard-assets/remoteEntry.js",
         production: "/production-assets/remoteEntry.js",
         sales: "/sales-assets/remoteEntry.js",
