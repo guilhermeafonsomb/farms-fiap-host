@@ -7,7 +7,7 @@ import { lazy } from "react";
 const Dashboard = lazy(() => import("dashboard/FarmsFiapDashboard"));
 const Production = lazy(() => import("production/FarmsFiapProduction"));
 const Sales = lazy(() => import("sales/FarmsFiapSales"));
-// const Goals = lazy(() => import("goals/FarmsFiapGoals"));
+const Goals = lazy(() => import("goals/FarmsFiapGoals"));
 
 export const AppRoutes = () => {
   return (
@@ -34,12 +34,7 @@ export const AppRoutes = () => {
 
         <Route
           path="/metas"
-          element={
-            <MicroFrontendRoute
-              micro="metas"
-              MicroComponent={() => <div>METAS</div>}
-            />
-          }
+          element={<MicroFrontendRoute micro="Metas" MicroComponent={Goals} />}
         />
 
         <Route path="*" element={<NotFoundPage />} />

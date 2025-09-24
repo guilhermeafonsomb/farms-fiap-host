@@ -21,10 +21,10 @@ export default defineConfig({
           process.env.NODE_ENV === "production"
             ? `https://${process.env.VITE_SALES_URL}/assets/remoteEntry.js`
             : "/sales-assets/remoteEntry.js",
-        // goals:
-        //   process.env.NODE_ENV === "production"
-        //     ? `https://${process.env.VITE_GOALS_URL}/assets/remoteEntry.js`
-        //     : "/goals-assets/remoteEntry.js",
+        goals:
+          process.env.NODE_ENV === "production"
+            ? `https://${process.env.VITE_GOALS_URL}/assets/remoteEntry.js`
+            : "/goals-assets/remoteEntry.js",
       },
       shared: [
         "react",
