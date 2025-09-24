@@ -13,10 +13,10 @@ export default defineConfig({
           process.env.NODE_ENV === "production"
             ? `https://${process.env.VITE_DASHBOARD_URL}/assets/remoteEntry.js`
             : "/dashboard-assets/remoteEntry.js",
-        // production:
-        //   process.env.NODE_ENV === "production"
-        //     ? `https://${process.env.VITE_PRODUCTION_URL}/assets/remoteEntry.js`
-        //     : "/production-assets/remoteEntry.js",
+        production:
+          process.env.NODE_ENV === "production"
+            ? `https://${process.env.VITE_PRODUCTION_URL}/assets/remoteEntry.js`
+            : "/production-assets/remoteEntry.js",
         sales:
           process.env.NODE_ENV === "production"
             ? `https://${process.env.VITE_SALES_URL}/assets/remoteEntry.js`
