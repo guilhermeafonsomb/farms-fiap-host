@@ -31,7 +31,6 @@ export default defineConfig({
         "react-dom",
         "tailwindcss",
         "@tanstack/react-query",
-        "@tanstack/eslint-plugin-query",
         "postcss",
         "autoprefixer",
         "react-router-dom",
