@@ -23,10 +23,7 @@ export const AppRoutes = () => {
         <Route
           path="/producao"
           element={
-            <MicroFrontendRoute
-              micro="Produçãaaaaaaaao"
-              MicroComponent={Production}
-            />
+            <MicroFrontendRoute micro="Produção" MicroComponent={Production} />
           }
         />
 

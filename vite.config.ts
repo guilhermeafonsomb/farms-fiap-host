@@ -34,6 +34,8 @@ export default defineConfig({
         "postcss",
         "autoprefixer",
         "react-router-dom",
+        "appwrite",
+        "zustand",
       ],
     }),
   ],
