@@ -15,27 +15,25 @@ export const AppRoutes = () => {
       <Routes>
         <Route
           path="/"
-          element={
-            <MicroFrontendRoute micro="Dashboard" MicroComponent={Dashboard} />
-          }
+          element={<MicroFrontendRoute MicroComponent={Dashboard} />}
         />
 
-        <Route
+        {/* <Route
           path="/producao"
           element={
-            <MicroFrontendRoute micro="Produção" MicroComponent={Production} />
+            <MicroFrontendRoute  MicroComponent={Production} />
           }
         />
 
         <Route
           path="/vendas"
-          element={<MicroFrontendRoute micro="Vendas" MicroComponent={Sales} />}
+          element={<MicroFrontendRoute  MicroComponent={Sales} />}
         />
 
         <Route
           path="/metas"
-          element={<MicroFrontendRoute micro="Metas" MicroComponent={Goals} />}
-        />
+          element={<MicroFrontendRoute  MicroComponent={Goals} />}
+        /> */}
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

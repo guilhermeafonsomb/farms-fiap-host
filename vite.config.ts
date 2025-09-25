@@ -36,6 +36,7 @@ export default defineConfig({
         "react-router-dom",
         "appwrite",
         "zustand",
+        "@tanstack/react-table",
       ],
     }),
   ],
