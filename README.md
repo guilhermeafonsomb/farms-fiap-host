@@ -18,6 +18,9 @@ first build the micro-fronts repos and run this project last.
 
 ## micro-frontends
  [micro-dashboard](https://github.com/guilhermeafonsomb/farms-fiap-dashboard)
+ 
  [micro-sales](https://github.com/guilhermeafonsomb/farms-fiap-sales)
+ 
  [micro-production](https://github.com/guilhermeafonsomb/farms-fiap-production)
+ 
  [micro-goals](https://github.com/guilhermeafonsomb/farms-fiap-goals)
