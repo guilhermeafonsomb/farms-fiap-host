@@ -1,5 +1,11 @@
 # React + TypeScript + Vite + Microfront
 
+Authentication:
+
+Email: teste@exemplo.com
+
+Senha: usuario_teste
+
 This is a host project. Need run all micro-frontends projects to see all experience
 
 ## Commands
