@@ -2,8 +2,6 @@ import { render, waitFor } from "@/test/test-utils";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
 import { Login } from ".";
-import { server } from "@/lib/mocks/server";
-import { http, HttpResponse } from "msw";
 
 describe("Login Integration", () => {
   it("should make a success login!", async () => {
