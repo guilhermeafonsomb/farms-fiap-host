@@ -1,5 +1,5 @@
-import Navigation from "../components/NavBar/Navigation";
-import { useAuth } from "../context/AuthContext";
+import Navigation from "@/components/NavBar/Navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuth();

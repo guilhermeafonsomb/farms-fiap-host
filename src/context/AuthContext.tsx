@@ -5,7 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { account } from "../lib/appwrite";
+import { account } from "@/lib/appwrite";
 
 interface AuthContextType {
   user: any | null;
