@@ -3,8 +3,8 @@ import { MainLayout } from "./MainLayout";
 import { MicroFrontendRoute } from "./MicroFrontendRoute";
 import { NotFoundPage } from "./NotFoundPage";
 import { lazy } from "react";
-import { useAuth } from "../context/AuthContext";
-import { Login } from "../pages/auth";
+import { useAuth } from "@/context/AuthContext";
+import { Login } from "@/pages/auth";
 import { toast } from "react-toastify";
 
 const Dashboard = lazy(() => import("dashboard/FarmsFiapDashboard"));
