@@ -26,7 +26,7 @@ describe("AuthContext", () => {
   });
 
   it("should set user when session exists on mount", async () => {
-    const mockUser = { $id: "123", email: "test@test.com" } as IUser;
+    const mockUser = { $id: "123", email: "test@test.com" };
     vi.mocked(account.get).mockResolvedValue(mockUser as any);
 
     const { result } = renderHook(() => useAuth(), {
