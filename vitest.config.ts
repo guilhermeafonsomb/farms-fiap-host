@@ -14,9 +14,15 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./src/test/setup.ts",
     css: true,
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/cypress/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "**/e2e/**",
+    ],
     coverage: {
       exclude: ["src/test/*", "node_modules/", "e2e/"],
     },
-    exclude: ["**/e2e/**"],
   },
 });
