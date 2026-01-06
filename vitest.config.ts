@@ -17,5 +17,6 @@ export default defineConfig({
     coverage: {
       exclude: ["src/test/*", "node_modules/", "e2e/"],
     },
+    exclude: ["**/e2e/**"],
   },
 });
