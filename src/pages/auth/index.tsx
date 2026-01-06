@@ -24,11 +24,7 @@ export const Login = () => {
       await login(email, password);
       toast.success("Sucesso! Login realizado com sucesso");
     } catch (err: any) {
-      const errorMessage =
-        err.code === 401
-          ? "E-mail ou senha incorretos"
-          : err.message || toast.error("Falha ao autenticar");
-      toast.error(`Erro! ${errorMessage}`);
+      toast.error(`Erro! E-mail ou senha incorretos`);
     } finally {
       setLoggingIn(false);
     }

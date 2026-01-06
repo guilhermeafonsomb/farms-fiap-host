@@ -1,14 +1,14 @@
-import { test as e2e, expect } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 
-e2e.describe("Authentication", () => {
-  e2e("should load login page", async ({ page }) => {
+test.describe("Authentication", () => {
+  test("should load login page", async ({ page }) => {
     await page.goto("/");
 
     await expect(page).toHaveTitle(/Farms/i);
     await expect(page.getByRole("button", { name: /Entrar/i })).toBeVisible();
   });
 
-  e2e("should login with valid credentials", async ({ page }) => {
+  test("should login with valid credentials", async ({ page }) => {
     await page.goto("/");
 
     const emailInput = page.getByPlaceholder(/Digite seu e-mail/i);
@@ -22,7 +22,7 @@ e2e.describe("Authentication", () => {
     await expect(page).toHaveURL(/\//);
   });
 
-  e2e("should show error with invalid credentials", async ({ page }) => {
+  test("should show error with invalid credentials", async ({ page }) => {
     await page.goto("/");
 
     await page
