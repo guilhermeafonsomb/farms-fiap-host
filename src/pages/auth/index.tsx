@@ -28,7 +28,6 @@ export const Login = () => {
         err.code === 401
           ? "E-mail ou senha incorretos"
           : err.message || toast.error("Falha ao autenticar");
-
       toast.error(`Erro! ${errorMessage}`);
     } finally {
       setLoggingIn(false);
