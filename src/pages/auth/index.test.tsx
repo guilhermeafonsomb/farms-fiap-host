@@ -25,4 +25,17 @@ describe("Login Integration", () => {
       expect(getByText(/Sucesso! Login realizado com sucesso/i)).toBeTruthy();
     });
   });
+
+  it("should make a fail login ", async () => {
+    const user = userEvent.setup();
+
+    const { getByRole, getByText } = render(<Login />);
+
+    const loginButton = getByRole("button", { name: /Entrar/i });
+    await user.click(loginButton);
+
+    await waitFor(() => {
+      expect(getByText(/Erro! Preencha e-mail e senha/i)).toBeTruthy();
+    });
+  });
 });

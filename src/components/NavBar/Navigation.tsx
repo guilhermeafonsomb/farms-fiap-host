@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "@/assets/logo.png";
 
-function Navigation() {
+function Navigation({ logout }: { logout: () => void }) {
   const location = useLocation();
 
   const isActive = (path: string) => {
@@ -17,9 +17,9 @@ function Navigation() {
   ];
 
   return (
-    <nav className="bg-white border-b-2 border-primary-100 ">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav className="bg-white border-b-2 border-primary-100 flex justify-center">
+      <div className="px-4 flex w-full items-center justify-between">
+        <div className="flex items-center justify-between h-16 w-full">
           <Link to="/">
             <img src={logo} alt="logo farm" />
           </Link>
@@ -40,6 +40,12 @@ function Navigation() {
             ))}
           </div>
         </div>
+        <button
+          className="px-4 py-2 h-12 text-sm font-medium text-red-400  mx-2"
+          onClick={() => logout()}
+        >
+          Logout
+        </button>
       </div>
     </nav>
   );
