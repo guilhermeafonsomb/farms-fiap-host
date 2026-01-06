@@ -15,7 +15,7 @@ export default defineConfig({
     setupFiles: "./src/test/setup.ts",
     css: true,
     coverage: {
-      exclude: ["src/test/*", "node_modules/"],
+      exclude: ["src/test/*", "node_modules/", "e2e/"],
     },
   },
 });
