@@ -3,6 +3,7 @@ import { AppRoutes } from "./routes/AppRoutes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
+import { RouteAnnouncer } from "./components/RouteAnnouncer/index.";
 
 function App() {
   const queryClient = new QueryClient();
@@ -10,6 +11,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Router>
+          <RouteAnnouncer />
           <AppRoutes />
           <ToastContainer position="top-center" autoClose={5000} />
         </Router>
