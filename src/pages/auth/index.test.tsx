@@ -1,89 +1,94 @@
 import { fireEvent, render, waitFor } from "@/test/test-utils";
-import { vi, beforeEach } from "vitest";
-import { Login } from ".";
-import { account } from "@/lib/appwrite";
+import { Login } from "./index";
+import { useAuth } from "@/context/AuthContext";
+import { vi } from "vitest";
 
-vi.mock("@/lib/appwrite", () => ({
-  account: {
-    get: vi.fn(),
-    createEmailPasswordSession: vi.fn(),
-    deleteSession: vi.fn(),
-  },
+vi.mock("@/context/AuthContext", () => ({
+  useAuth: vi.fn(),
+  AuthProvider: ({ children }: { children: React.ReactNode }) => (
+    <>{children}</>
+  ),
 }));
 
-describe("Login Integration", () => {
+describe("Login", () => {
+  const mockLogin = vi.fn();
+
   beforeEach(() => {
-    vi.clearAllMocks();
-    vi.mocked(account.get).mockRejectedValue(new Error("No session"));
+    (useAuth as any).mockReturnValue({
+      login: mockLogin,
+    });
+    mockLogin.mockClear();
   });
 
-  it("should make a success login!", async () => {
-    vi.mocked(account.createEmailPasswordSession).mockResolvedValue({} as any);
-    vi.mocked(account.get).mockResolvedValue({ email: "user@test.com" } as any);
+  it("should render login form", () => {
+    const { getByText, getByPlaceholderText } = render(<Login />);
+    expect(getByText("FIAP Farms")).toBeInTheDocument();
+    expect(getByPlaceholderText("Digite seu e-mail")).toBeInTheDocument();
+  });
 
-    const { getByPlaceholderText, getByRole, getByText } = render(<Login />);
+  it("should show validation errors when fields are empty", () => {
+    const { getByRole, getAllByText } = render(<Login />);
 
-    const emailInput = getByPlaceholderText(/Digite seu e-mail/i);
-    const passwordInput = getByPlaceholderText(/Digite sua senha/i);
-    const loginButton = getByRole("button", { name: /Entrar/i });
+    const submitButton = getByRole("button", { name: /entrar/i });
+    fireEvent.click(submitButton);
 
-    expect(emailInput).toBeTruthy();
-    expect(passwordInput).toBeTruthy();
-    expect(loginButton).toBeTruthy();
+    const errorHeading = getByRole("heading", {
+      name: /encontramos 2 erros no formulário/i,
+    });
+    expect(errorHeading).toBeInTheDocument();
+    expect(document.activeElement).toBe(errorHeading);
 
-    fireEvent.change(emailInput, { target: { value: "user@test.com" } });
-    fireEvent.change(passwordInput, { target: { value: "123456" } });
+    expect(getAllByText("E-mail é obrigatório")[1]).toBeInTheDocument();
+    expect(getAllByText("Senha é obrigatória")[1]).toBeInTheDocument();
+  });
 
-    fireEvent.click(loginButton);
+  it("should link errors to inputs using aria-describedby", () => {
+    const { getByRole, getByPlaceholderText } = render(<Login />);
 
-    waitFor(() => {
-      expect(getByText(/Sucesso! Login realizado com sucesso/i)).toBeTruthy();
+    const submitButton = getByRole("button", { name: /entrar/i });
+    fireEvent.click(submitButton);
+
+    const emailInput = getByPlaceholderText("Digite seu e-mail");
+    expect(emailInput).toHaveAttribute("aria-invalid", "true");
+    expect(emailInput).toHaveAttribute("aria-describedby", "email-error");
+
+    const emailError = document.getElementById("email-error");
+    expect(emailError).toHaveTextContent("E-mail é obrigatório");
+  });
+
+  it("should call login function with correct data", async () => {
+    const { getByPlaceholderText, getByRole } = render(<Login />);
+
+    fireEvent.change(getByPlaceholderText("Digite seu e-mail"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(getByPlaceholderText("Digite sua senha"), {
+      target: { value: "password123" },
+    });
+
+    const submitButton = getByRole("button", { name: /entrar/i });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockLogin).toHaveBeenCalledWith("test@example.com", "password123");
     });
   });
 
-  it("should display errors for empty inputs", () => {
-    const { getByRole, getByText } = render(<Login />);
+  it("should show error message when login fails", async () => {
+    mockLogin.mockRejectedValue(new Error("Login failed"));
+    const { getByPlaceholderText, getByRole, findByText } = render(<Login />);
 
-    const loginButton = getByRole("button", { name: /Entrar/i });
-
-    fireEvent.click(loginButton);
-
-    expect(getByText(/E-mail é obrigatório/i)).toBeTruthy();
-    expect(getByText(/Senha é obrigatória/i)).toBeTruthy();
-    expect(
-      getByText(/Erro! Preencha todos os campos corretamente/i)
-    ).toBeTruthy();
-  });
-
-  it("should display error message when login fails (catch scenario)", async () => {
-    vi.mocked(account.createEmailPasswordSession).mockRejectedValue(
-      new Error("Invalid credentials")
-    );
-
-    const { getByPlaceholderText, getByRole, findAllByText } = render(
-      <Login />
-    );
-
-    const emailInput = getByPlaceholderText(/Digite seu e-mail/i);
-    const passwordInput = getByPlaceholderText(/Digite sua senha/i);
-    const loginButton = getByRole("button", { name: /Entrar/i });
-
-    fireEvent.change(emailInput, { target: { value: "wrong@test.com" } });
-    fireEvent.change(passwordInput, { target: { value: "wrongpassword" } });
-
-    fireEvent.click(loginButton);
-
-    const errorMessages = await findAllByText(/E-mail ou senha incorretos/i);
-
-    expect(errorMessages.length).toBeGreaterThan(0);
-    const loginErrorMessage = errorMessages.find(
-      (el) => el.getAttribute("role") === "alert"
-    );
-    expect(loginErrorMessage).toBeInTheDocument();
-
-    expect(account.createEmailPasswordSession).toHaveBeenCalledWith({
-      email: "wrong@test.com",
-      password: "wrongpassword",
+    fireEvent.change(getByPlaceholderText("Digite seu e-mail"), {
+      target: { value: "test@example.com" },
     });
+    fireEvent.change(getByPlaceholderText("Digite sua senha"), {
+      target: { value: "wrongpassword" },
+    });
+
+    const submitButton = getByRole("button", { name: /entrar/i });
+    fireEvent.click(submitButton);
+
+    const errorMessage = await findByText("E-mail ou senha incorretos");
+    expect(errorMessage).toBeInTheDocument();
   });
 });
