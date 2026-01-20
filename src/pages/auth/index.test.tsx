@@ -22,7 +22,7 @@ describe("Login", () => {
 
   it("should render login form", () => {
     const { getByText, getByPlaceholderText } = render(<Login />);
-    expect(getByText("FIAP Farms")).toBeInTheDocument();
+    expect(getByText("TEST")).toBeInTheDocument();
     expect(getByPlaceholderText("Digite seu e-mail")).toBeInTheDocument();
   });
 
