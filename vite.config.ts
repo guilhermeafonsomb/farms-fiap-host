@@ -10,10 +10,10 @@ export default defineConfig({
     federation({
       name: "farms-fiap-app",
       remotes: {
-        dashboard: "/dashboard-assets/remoteEntry.js",
-        production: "/production-assets/remoteEntry.js",
-        sales: "/sales-assets/remoteEntry.js",
-        goals: "/goals-assets/remoteEntry.js",
+        dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
+        production: `${process.env.VITE_PRODUCTION_URL || "http://localhost:5002"}/production-assets/remoteEntry.js`,
+        sales: `${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
+        goals: `${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
       },
 
       shared: [
