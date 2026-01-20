@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference types="@testing-library/jest-dom" />
+
 /// <reference types="@originjs/vite-plugin-federation" />
 
 declare module "dashboard/FarmsFiapDashboard" {

@@ -1,7 +1,14 @@
 export const LoadingFallback = () => {
   return (
-    <div className="flex justify-center items-center h-64">
-      <div className="text-lg font-semibold">Carregando micro frontend...</div>
+    <div
+      role="status"
+      aria-live="polite"
+      className="flex justify-center items-center h-64"
+    >
+      <div className="text-lg font-semibold animate-pulse">
+        Carregando micro frontend...
+      </div>
+      <span className="sr-only">Por favor aguarde</span>
     </div>
   );
 };
