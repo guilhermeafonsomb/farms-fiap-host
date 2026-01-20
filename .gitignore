@@ -31,3 +31,8 @@ coverage
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# env
+.env
+.env.development
+.env.production
