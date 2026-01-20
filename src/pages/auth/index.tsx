@@ -48,7 +48,7 @@ export const Login = () => {
       <div className="w-full max-w-md">
         <p className="text-3xl font-bold text-center text-black mb-10">
           <Leaf size={40} className="text-primary-500 mx-auto" />
-          FIAP Farms
+          TEST
         </p>
 
         <ErrorSummary errors={errors} />
