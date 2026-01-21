@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-const APPWRITE_ENDPOINT = "https://nyc.cloud.appwrite.io/v1";
+export const APPWRITE_ENDPOINT = "https://nyc.cloud.appwrite.io/v1";
 
 export const handlers = [
   http.get(`${APPWRITE_ENDPOINT}/account`, () => {
@@ -25,6 +25,6 @@ export const handlers = [
       }
 
       return new HttpResponse(null, { status: 401 });
-    }
+    },
   ),
 ];
