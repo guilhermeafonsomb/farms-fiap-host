@@ -6,9 +6,9 @@
 
 Authentication:
 
-Email: teste@exemplo.com
+Email: test@example.com
 
-Senha: usuario_teste
+Senha: user_test
 
 This is a host project. Need run all micro-frontends projects to see all experience in local environment
 
