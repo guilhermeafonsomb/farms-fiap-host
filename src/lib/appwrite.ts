@@ -4,7 +4,7 @@ const client = new Client();
 
 client
   .setEndpoint("https://nyc.cloud.appwrite.io/v1")
-  .setProject("68d01da500316c3af9cd");
+  .setProject("696fd73e0039415a97fb");
 
 export const account = new Account(client);
 export const databases = new Databases(client);
