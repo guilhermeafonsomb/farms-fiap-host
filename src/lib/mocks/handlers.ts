@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-export const APPWRITE_ENDPOINT = "https://nyc.cloud.appwrite.io/v1";
+export const APPWRITE_ENDPOINT = import.meta.env.VITE_APPWRITE_ENDPOINT;
 
 export const handlers = [
   http.get(`${APPWRITE_ENDPOINT}/account`, () => {
