@@ -5,7 +5,7 @@ import { NotFoundPage } from "./NotFoundPage";
 import { lazy } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Login } from "@/pages/auth";
-import { toast } from "react-toastify";
+import { Loading } from "@/components/loading";
 
 const Dashboard = lazy(() => import("dashboard/FarmsFiapDashboard"));
 const Production = lazy(() => import("production/FarmsFiapProduction"));
@@ -16,10 +16,15 @@ export const AppRoutes = () => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return toast.info("Carregando...");
+    return (
+      <div className="container">
+        <Loading />
+      </div>
+    );
   }
   return (
     <MainLayout>
+      {true}
       <Routes>
         {user ? (
           <>
