@@ -8,7 +8,6 @@ import { Login } from "@/pages/auth";
 import { Loading } from "@/components/loading";
 
 const Dashboard = lazy(() => import("dashboard/FarmsFiapDashboard"));
-const Production = lazy(() => import("production/FarmsFiapProduction"));
 const Sales = lazy(() => import("sales/FarmsFiapSales"));
 const Goals = lazy(() => import("goals/FarmsFiapGoals"));
 
@@ -31,11 +30,6 @@ export const AppRoutes = () => {
             <Route
               path="/"
               element={<MicroFrontendRoute MicroComponent={Dashboard} />}
-            />
-
-            <Route
-              path="/producao"
-              element={<MicroFrontendRoute MicroComponent={Production} />}
             />
 
             <Route

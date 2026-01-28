@@ -8,11 +8,6 @@ declare module "dashboard/FarmsFiapDashboard" {
   export default Dashboard;
 }
 
-declare module "production/FarmsFiapProduction" {
-  const Production: React.ComponentType;
-  export default Production;
-}
-
 declare module "sales/FarmsFiapSales" {
   const Sales: React.ComponentType;
   export default Sales;

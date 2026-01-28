@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
 import path from "path";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -11,7 +10,6 @@ export default defineConfig({
       name: "farms-fiap-app",
       remotes: {
         dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
-        production: `${process.env.VITE_PRODUCTION_URL || "http://localhost:5002"}/production-assets/remoteEntry.js`,
         sales: `${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
         goals: `${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
       },
@@ -47,11 +45,6 @@ export default defineConfig({
         target: "http://localhost:5001",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/dashboard-assets/, "/assets"),
-      },
-      "/production-assets": {
-        target: "http://localhost:5002",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/production-assets/, "/assets"),
       },
       "/sales-assets": {
         target: "http://localhost:5003",
