@@ -12,7 +12,6 @@ function Navigation({ logout }: { logout: () => void }) {
   const navItems = [
     { path: "/", label: "Dashboard" },
     { path: "/vendas", label: "Vendas" },
-    { path: "/producao", label: "Produção" },
     { path: "/metas", label: "Metas" },
   ];
 
