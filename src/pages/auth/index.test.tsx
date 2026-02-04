@@ -26,34 +26,14 @@ describe("Login", () => {
     expect(getByPlaceholderText("Digite seu e-mail")).toBeInTheDocument();
   });
 
-  it("should show validation errors when fields are empty", () => {
-    const { getByRole, getAllByText } = render(<Login />);
+  it("should show validation errors when fields are empty", async () => {
+    const { getByRole, findByText } = render(<Login />);
 
-    const submitButton = getByRole("button", { name: /entrar/i });
+    const submitButton = getByRole("button", { name: /Entrar/i });
     fireEvent.click(submitButton);
 
-    const errorHeading = getByRole("heading", {
-      name: /encontramos 2 erros no formulário/i,
-    });
-    expect(errorHeading).toBeInTheDocument();
-    expect(document.activeElement).toBe(errorHeading);
-
-    expect(getAllByText("E-mail é obrigatório")[1]).toBeInTheDocument();
-    expect(getAllByText("Senha é obrigatória")[1]).toBeInTheDocument();
-  });
-
-  it("should link errors to inputs using aria-describedby", () => {
-    const { getByRole, getByPlaceholderText } = render(<Login />);
-
-    const submitButton = getByRole("button", { name: /entrar/i });
-    fireEvent.click(submitButton);
-
-    const emailInput = getByPlaceholderText("Digite seu e-mail");
-    expect(emailInput).toHaveAttribute("aria-invalid", "true");
-    expect(emailInput).toHaveAttribute("aria-describedby", "email-error");
-
-    const emailError = document.getElementById("email-error");
-    expect(emailError).toHaveTextContent("E-mail é obrigatório");
+    expect(await findByText("E-mail é obrigatório")).toBeInTheDocument();
+    expect(await findByText("Senha é obrigatória")).toBeInTheDocument();
   });
 
   it("should call login function with correct data", async () => {

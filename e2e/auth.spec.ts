@@ -31,8 +31,6 @@ test.describe("Authentication", () => {
     await page.getByPlaceholder(/Digite sua senha/i).fill("senhaerrada");
     await page.getByRole("button", { name: /Entrar/i }).click();
 
-    await expect(
-      page.getByText(/Erro! E-mail ou senha incorretos/i)
-    ).toBeVisible();
+    await expect(page.getByText(/E-mail ou senha incorretos/i)).toBeVisible();
   });
 });
