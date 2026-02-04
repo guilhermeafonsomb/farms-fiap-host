@@ -1,5 +1,5 @@
-import { describe, expect, it, render, vi } from "@/test/test-utils";
-import Navigation from "./Navigation";
+import { render, vi } from "@/test/test-utils";
+import Navigation from ".";
 
 const mockLogout = vi.fn();
 
@@ -21,6 +21,6 @@ describe("Navigation", () => {
 
     button.click();
 
-    expect(mockLogout).toBeCalled();
+    expect(mockLogout).toHaveBeenCalled();
   });
 });

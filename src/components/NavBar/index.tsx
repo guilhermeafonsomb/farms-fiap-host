@@ -1,9 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 
 import logo from "@/assets/logo.png";
+import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
 function Navigation({ logout }: { logout: () => void }) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -29,27 +32,25 @@ function Navigation({ logout }: { logout: () => void }) {
           <ul className="flex space-x-2">
             {navItems.map((item) => (
               <li key={item.path}>
-                <Link
-                  to={item.path}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-                    isActive(item.path)
-                      ? "bg-primary-500 text-white shadow-inner"
-                      : "text-primary-500 hover:bg-primary-500 hover:text-white"
-                  }`}
+                <Button
+                  onClick={() => navigate(item.path)}
+                  variant={isActive(item.path) ? "default" : "white"}
+                  size="sm"
                 >
                   {item.label}
-                </Link>
+                </Button>
               </li>
             ))}
           </ul>
         </div>
-        <button
-          className="px-4 py-2 h-12 text-sm font-medium text-red-400  mx-2  focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 rounded"
+        <Button
+          size="sm"
+          variant="secondary"
           aria-label="Logout from application"
           onClick={() => logout()}
         >
           Logout
-        </button>
+        </Button>
       </div>
     </nav>
   );

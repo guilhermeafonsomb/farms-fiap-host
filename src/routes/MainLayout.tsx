@@ -1,4 +1,4 @@
-import Navigation from "@/components/NavBar/Navigation";
+import Navigation from "@/components/NavBar";
 import { useAuth } from "@/context/AuthContext";
 
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
@@ -14,7 +14,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       </a>
 
       {user && <Navigation logout={logout} />}
-      <main id="main-content" className="container mx-auto p-6">
+      <main id="main-content" className="container mx-auto p-6 h-screen">
         {children}
       </main>
     </div>

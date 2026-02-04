@@ -9,7 +9,7 @@ export default defineConfig({
     federation({
       name: "farms-fiap-app",
       remotes: {
-        dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
+         dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
         sales: `${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
         goals: `${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
       },
@@ -49,12 +49,12 @@ export default defineConfig({
       "/sales-assets": {
         target: "http://localhost:5003",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/sales-assets/, "/assets"),
+        rewrite: (path) => path.replace(/^\/sales-assets/, "/sales-assets"),
       },
       "/goals-assets": {
         target: "http://localhost:5004",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/goals-assets/, "/assets"),
+        rewrite: (path) => path.replace(/^\/goals-assets/, "/goals-assets"),
       },
     },
   },
