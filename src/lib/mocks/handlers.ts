@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 
 export const APPWRITE_ENDPOINT = import.meta.env.VITE_APPWRITE_ENDPOINT;
+export const APPWRITE_PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 
 export const handlers = [
   http.get(`${APPWRITE_ENDPOINT}/account`, () => {

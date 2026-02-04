@@ -45,7 +45,7 @@ export const AppRoutes = () => {
             <Route path="*" element={<NotFoundPage />} />
           </>
         ) : (
-          <Route path="" element={<Login />} />
+          <Route path="*" element={<Login />} />
         )}
       </Routes>
     </MainLayout>
