@@ -8,17 +8,11 @@ const skipZephyr = process.env.SKIP_ZEPHYR === "true";
 
 const mfConfig = {
   name: "farms-fiap-host",
-  remotes: skipZephyr
-    ? {
-        dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
-        sales: `${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
-        goals: `${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
-      }
-    : {
-        dashboard: "dashboard-app",
-        sales: "sales-app",
-        goals: "goals-app",
-      },
+  remotes: {
+    dashboard: `dashboard-app@${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
+    sales: `sales-app@${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
+    goals: `goals-app@${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
+  },
   shared: {
     react: { singleton: true, requiredVersion: "^19.0.0" },
     "react-dom": { singleton: true, requiredVersion: "^19.0.0" },
