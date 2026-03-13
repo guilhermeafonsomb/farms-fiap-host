@@ -1,37 +1,48 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import federation from "@originjs/vite-plugin-federation";
+import { withZephyr } from "vite-plugin-zephyr";
+import { federation } from "@module-federation/vite";
 import path from "path";
+
+const skipZephyr = process.env.SKIP_ZEPHYR === "true";
+
+const mfConfig = {
+  name: "farms-fiap-app",
+  remotes: skipZephyr
+    ? {
+        dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
+        sales: `${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
+        goals: `${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
+      }
+    : {
+        dashboard: "dashboard-app",
+        sales: "sales-app",
+        goals: "goals-app",
+      },
+  shared: {
+    react: { singleton: true, requiredVersion: "^19.0.0" },
+    "react-dom": { singleton: true, requiredVersion: "^19.0.0" },
+    "react-router-dom": { singleton: true },
+    "@tanstack/react-query": { singleton: true },
+    zustand: { singleton: true },
+    appwrite: { singleton: true },
+    "@tanstack/react-table": { singleton: true },
+  },
+  dts: false,
+};
 
 export default defineConfig({
   plugins: [
     react(),
-    federation({
-      name: "farms-fiap-app",
-      remotes: {
-         dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
-        sales: `${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
-        goals: `${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
-      },
-
-      shared: [
-        "react",
-        "react-dom",
-        "tailwindcss",
-        "@tanstack/react-query",
-        "postcss",
-        "autoprefixer",
-        "react-router-dom",
-        "appwrite",
-        "zustand",
-        "@tanstack/react-table",
-      ],
-    }),
+    skipZephyr ? federation(mfConfig) : withZephyr({ mfConfig }),
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  optimizeDeps: {
+    needsInterop: ["react", "@tanstack/react-query", "zustand"],
   },
   build: {
     target: "esnext",
@@ -40,22 +51,8 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    proxy: {
-      "/dashboard-assets": {
-        target: "http://localhost:5001",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dashboard-assets/, "/assets"),
-      },
-      "/sales-assets": {
-        target: "http://localhost:5003",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/sales-assets/, "/sales-assets"),
-      },
-      "/goals-assets": {
-        target: "http://localhost:5004",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/goals-assets/, "/goals-assets"),
-      },
-    },
+  },
+  preview: {
+    port: 5173,
   },
 });
