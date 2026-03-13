@@ -42,12 +42,12 @@
     "zustand": "^5.0.8"
   },
   "zephyr:dependencies": {
-    "dashboard-app": "dashboard-app",
-    "sales-app": "sales-app",
-    "goals-app": "goals-app"
+    "dashboard": "dashboard-app",
+    "sales": "sales-app",
+    "goals": "goals-app"
   },
   "devDependencies": {
-    "@eslint/js": "@hookform/resolvers/zod",
+    "@eslint/js": "^9.33.0",
     "@module-federation/vite": "^1.12.3",
     "@playwright/test": "^1.57.0",
     "@tanstack/eslint-plugin-query": "^5.90.1",
