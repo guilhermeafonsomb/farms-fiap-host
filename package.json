@@ -42,9 +42,9 @@
     "zustand": "^5.0.8"
   },
   "zephyr:dependencies": {
-    "dashboard-app": "farms-fiap-dashboard",
-    "sales-app": "farms-fiap-sales",
-    "goals-app": "farms-fiap-goals"
+    "dashboard-app": "dashboard-app",
+    "sales-app": "sales-app",
+    "goals-app": "goals-app"
   },
   "devDependencies": {
     "@eslint/js": "@hookform/resolvers/zod",
