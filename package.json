@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:e2e": "SKIP_ZEPHYR=true vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
@@ -18,7 +19,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
-    "@originjs/vite-plugin-federation": "^1.4.1",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@eslint/js": "@hookform/resolvers/zod",
+    "@module-federation/vite": "^1.12.3",
     "@playwright/test": "^1.57.0",
     "@tanstack/eslint-plugin-query": "^5.90.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -68,6 +69,7 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
+    "vite-plugin-zephyr": "^0.1.15",
     "vitest": "^4.0.16"
   }
 }

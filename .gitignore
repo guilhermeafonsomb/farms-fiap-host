@@ -32,6 +32,9 @@ coverage
 /playwright/.cache/
 /playwright/.auth/
 
+# Zephyr
+.__mf__temp
+
 # env
 .env
 .env.development

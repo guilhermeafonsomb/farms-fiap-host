@@ -70,7 +70,7 @@ jobs:
         env:
           VITE_APPWRITE_ENDPOINT: ${{ secrets.VITE_APPWRITE_ENDPOINT }}
           VITE_APPWRITE_PROJECT_ID: ${{ secrets.VITE_APPWRITE_PROJECT_ID }}
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -79,7 +79,7 @@ jobs:
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: false
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   e2e-tests:
     needs: test
@@ -109,6 +109,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
+      - name: Build for E2E
+        run: pnpm build:e2e
+        env:
+          VITE_APPWRITE_ENDPOINT: ${{ secrets.VITE_APPWRITE_ENDPOINT }}
+          VITE_APPWRITE_PROJECT_ID: ${{ secrets.VITE_APPWRITE_PROJECT_ID }}
+          VITE_DASHBOARD_URL: ${{ secrets.VITE_DASHBOARD_URL }}
+          VITE_SALES_URL: ${{ secrets.VITE_SALES_URL }}
+          VITE_GOALS_URL: ${{ secrets.VITE_GOALS_URL }}
+
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
@@ -117,7 +126,6 @@ jobs:
         env:
           VITE_APPWRITE_ENDPOINT: ${{ secrets.VITE_APPWRITE_ENDPOINT }}
           VITE_APPWRITE_PROJECT_ID: ${{ secrets.VITE_APPWRITE_PROJECT_ID }}
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
@@ -154,12 +162,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
-      - name: Project build
+      - name: Build and deploy to Zephyr
         run: pnpm build
         env:
           VITE_APPWRITE_ENDPOINT: ${{ secrets.VITE_APPWRITE_ENDPOINT }}
           VITE_APPWRITE_PROJECT_ID: ${{ secrets.VITE_APPWRITE_PROJECT_ID }}
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          ZE_SERVER_TOKEN: ${{ secrets.ZE_SERVER_TOKEN }}
+          ZE_USER_EMAIL: ${{ secrets.ZE_USER_EMAIL }}
 
 
       - name: Upload build artifacts
