@@ -7,7 +7,7 @@ import path from "path";
 const skipZephyr = process.env.SKIP_ZEPHYR === "true";
 
 const mfConfig = {
-  name: "farms-fiap-app",
+  name: "farms-fiap-host",
   remotes: skipZephyr
     ? {
         dashboard: `${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
