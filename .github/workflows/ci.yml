@@ -114,9 +114,8 @@ jobs:
         env:
           VITE_APPWRITE_ENDPOINT: ${{ secrets.VITE_APPWRITE_ENDPOINT }}
           VITE_APPWRITE_PROJECT_ID: ${{ secrets.VITE_APPWRITE_PROJECT_ID }}
-          VITE_DASHBOARD_URL: ${{ secrets.VITE_DASHBOARD_URL }}
-          VITE_SALES_URL: ${{ secrets.VITE_SALES_URL }}
-          VITE_GOALS_URL: ${{ secrets.VITE_GOALS_URL }}
+          VITE_APPWRITE_DATABASE_ID: ${{ secrets.VITE_APPWRITE_DATABASE_ID }}
+          VITE_APPWRITE_TABLE_ID: ${{ secrets.VITE_APPWRITE_TABLE_ID }}
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
@@ -167,6 +166,8 @@ jobs:
         env:
           VITE_APPWRITE_ENDPOINT: ${{ secrets.VITE_APPWRITE_ENDPOINT }}
           VITE_APPWRITE_PROJECT_ID: ${{ secrets.VITE_APPWRITE_PROJECT_ID }}
+          VITE_APPWRITE_DATABASE_ID: ${{ secrets.VITE_APPWRITE_DATABASE_ID }}
+          VITE_APPWRITE_TABLE_ID: ${{ secrets.VITE_APPWRITE_TABLE_ID }}
           ZE_SERVER_TOKEN: ${{ secrets.ZE_SERVER_TOKEN }}
           ZE_USER_EMAIL: ${{ secrets.ZE_USER_EMAIL }}
 
