@@ -6,6 +6,7 @@ import path from "path";
 
 const mfConfig = {
   name: "farms-fiap-host",
+  filename: "remoteEntry.js",
   runtimePlugins: ["./src/mf-runtime-plugin.ts"],
   remotes: {
     dashboard: "dashboard-app",
@@ -21,6 +22,7 @@ const mfConfig = {
     appwrite: { singleton: true },
     "@tanstack/react-table": { singleton: true },
   },
+  manifest: true,
   dts: false,
 };
 
