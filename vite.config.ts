@@ -4,14 +4,12 @@ import { withZephyr } from "vite-plugin-zephyr";
 import { federation } from "@module-federation/vite";
 import path from "path";
 
-const skipZephyr = process.env.SKIP_ZEPHYR === "true";
-
 const mfConfig = {
   name: "farms-fiap-host",
   remotes: {
-    dashboard: `dashboard-app@${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/mf-manifest.json`,
-    sales: `sales-app@${process.env.VITE_SALES_URL || "http://localhost:5003"}/mf-manifest.json`,
-    goals: `goals-app@${process.env.VITE_GOALS_URL || "http://localhost:5004"}/mf-manifest.json`,
+    dashboard: `dashboard-app@${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/remoteEntry.js`,
+    sales: `sales-app@${process.env.VITE_SALES_URL || "http://localhost:5003"}/remoteEntry.js`,
+    goals: `goals-app@${process.env.VITE_GOALS_URL || "http://localhost:5004"}/remoteEntry.js`,
   },
   shared: {
     react: { singleton: true, requiredVersion: "^19.0.0" },
@@ -28,7 +26,7 @@ const mfConfig = {
 export default defineConfig({
   plugins: [
     react(),
-    skipZephyr ? federation(mfConfig) : withZephyr({ mfConfig }),
+    withZephyr({ mfConfig }),
   ],
   resolve: {
     alias: {
