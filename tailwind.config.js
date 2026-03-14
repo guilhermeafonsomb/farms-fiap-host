@@ -1,7 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: ["class"],
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "../farms-fiap-dashboard/src/**/*.{js,ts,jsx,tsx}",
+    "../farms-fiap-sales/src/**/*.{js,ts,jsx,tsx}",
+    "../farms-fiap-goals/src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
   	extend: {
   		colors: {
