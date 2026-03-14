@@ -38,9 +38,9 @@
     "zustand": "^5.0.8"
   },
   "zephyr:dependencies": {
-    "dashboard": "dashboard-app",
-    "sales": "sales-app",
-    "goals": "goals-app"
+    "dashboard-app": "dashboard-app.farms-fiap-dashboard.guilhermeafonsomb@latest",
+    "sales-app": "sales-app.farms-fiap-sales.guilhermeafonsomb@latest",
+    "goals-app": "goals-app.farms-fiap-goals.guilhermeafonsomb@latest"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
