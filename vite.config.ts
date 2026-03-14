@@ -1,17 +1,28 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { withZephyr } from "vite-plugin-zephyr";
+import { ModuleFederationOptions,  withZephyr } from "vite-plugin-zephyr";
 import { federation } from "@module-federation/vite";
 import path from "path";
 
-const mfConfig = {
+const mfConfig: ModuleFederationOptions = {
   name: "farms-fiap-host",
   filename: "remoteEntry.js",
-  runtimePlugins: ["./src/mf-runtime-plugin.ts"],
   remotes: {
-    dashboard: "dashboard-app",
-    sales: "sales-app",
-    goals: "goals-app",
+    dashboard: {
+      name: 'dashboard',
+      entry: "http://localhost:5001/remoteEntry.js",
+      type: 'module',
+    },
+    sales: {
+      name: 'sales',
+      entry: "http://localhost:5003/remoteEntry.js",
+      type: 'module',
+    },
+    goals: {
+      name: 'goals',
+      entry: "http://localhost:5004/remoteEntry.js",
+      type: 'module',
+    },
   },
   shared: {
     react: { singleton: true, requiredVersion: "^19.0.0" },
