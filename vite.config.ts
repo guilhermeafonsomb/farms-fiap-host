@@ -8,9 +8,9 @@ const mfConfig = {
   name: "farms-fiap-host",
   runtimePlugins: ["./src/mf-runtime-plugin.ts"],
   remotes: {
-    dashboard: `dashboard-app@${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/mf-manifest.json`,
-    sales: `sales-app@${process.env.VITE_SALES_URL || "http://localhost:5003"}/mf-manifest.json`,
-    goals: `goals-app@${process.env.VITE_GOALS_URL || "http://localhost:5004"}/mf-manifest.json`,
+    dashboard: "dashboard-app",
+    sales: "sales-app",
+    goals: "goals-app",
   },
   shared: {
     react: { singleton: true, requiredVersion: "^19.0.0" },
