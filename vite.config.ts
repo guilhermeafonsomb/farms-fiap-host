@@ -9,9 +9,9 @@ const skipZephyr = process.env.SKIP_ZEPHYR === "true";
 const mfConfig = {
   name: "farms-fiap-host",
   remotes: {
-    dashboard: `dashboard-app@${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/assets/remoteEntry.js`,
-    sales: `sales-app@${process.env.VITE_SALES_URL || "http://localhost:5003"}/sales-assets/remoteEntry.js`,
-    goals: `goals-app@${process.env.VITE_GOALS_URL || "http://localhost:5004"}/goals-assets/remoteEntry.js`,
+    dashboard: `dashboard-app@${process.env.VITE_DASHBOARD_URL || "http://localhost:5001"}/mf-manifest.json`,
+    sales: `sales-app@${process.env.VITE_SALES_URL || "http://localhost:5003"}/mf-manifest.json`,
+    goals: `goals-app@${process.env.VITE_GOALS_URL || "http://localhost:5004"}/mf-manifest.json`,
   },
   shared: {
     react: { singleton: true, requiredVersion: "^19.0.0" },
