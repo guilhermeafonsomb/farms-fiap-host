@@ -6,15 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:e2e": "SKIP_ZEPHYR=true vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui --coverage",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@originjs/vite-plugin-federation": "^1.4.1",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
@@ -37,14 +41,9 @@
     "zod": "^3.25.76",
     "zustand": "^5.0.8"
   },
-  "zephyr:dependencies": {
-    "dashboard": "dashboard-app.farms-fiap-dashboard.guilhermeafonsomb@latest",
-    "sales": "sales-app.farms-fiap-sales.guilhermeafonsomb@latest",
-    "goals": "goals-app.farms-fiap-goals.guilhermeafonsomb@latest"
-  },
   "devDependencies": {
-    "@eslint/js": "^9.33.0",
-    "@module-federation/vite": "^1.12.3",
+    "@eslint/js": "@hookform/resolvers/zod",
+    "@playwright/test": "^1.57.0",
     "@tanstack/eslint-plugin-query": "^5.90.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
@@ -69,7 +68,6 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
-    "vite-plugin-zephyr": "^0.1.15",
     "vitest": "^4.0.16"
   }
 }

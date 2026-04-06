@@ -32,7 +32,7 @@ export const AppRoutes = () => {
               element={<MicroFrontendRoute MicroComponent={Dashboard} />}
             />
 
-             <Route
+            <Route
               path="/vendas"
               element={<MicroFrontendRoute MicroComponent={Sales} />}
             />
@@ -42,7 +42,7 @@ export const AppRoutes = () => {
               element={<MicroFrontendRoute MicroComponent={Goals} />}
             />
 
-            <Route path="*" element={<NotFoundPage />} /> 
+            <Route path="*" element={<NotFoundPage />} />
           </>
         ) : (
           <Route path="*" element={<Login />} />
